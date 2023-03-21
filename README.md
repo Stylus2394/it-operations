@@ -1,4 +1,4 @@
-IT Operations
+IT Operations.
 =============
 # Inleiding
 Deze repository zal `Python` scripts gaan bevatten. 
