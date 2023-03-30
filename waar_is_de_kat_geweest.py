@@ -103,7 +103,7 @@ while True:
     # Verplaats de kat
     if kat_positie == 1:
         kat_positie += 1
-    elif kat_positie == 5:
+    elif kat_positie == aantal_dozen:
         kat_positie -= 1
     else:
         kat_positie += random.choice([-1, 1])
