@@ -34,6 +34,10 @@ dozen = ["[]", "[]", "[]", "[]", "[]"]
 while True:
     clear()
     print('''
+  
+  
+  
+  
   __________
  /         /|
 +---------+ |
@@ -63,8 +67,6 @@ while True:
     # Kijk of de kat in de gekozen doos zit
     if doos_nummer == kat_positie:
         clear()
-        print(bcolors.OKGREEN, "Gefeliciteerd! Je hebt de kat gevonden.", bcolors.ENDC)
-        print(bcolors.OKCYAN, "Je had",aantal_pogingen , "pogingen nodig om de kat te vinden.", bcolors.ENDC)    
         print('''
    _________
   | |\_._/| |
@@ -77,6 +79,8 @@ while True:
 |         | /
 +---------+/
 ''')
+        print(bcolors.OKGREEN, "Gefeliciteerd! Je hebt de kat gevonden.", bcolors.ENDC)
+        print(bcolors.OKCYAN, "Je had",aantal_pogingen , "pogingen nodig om de kat te vinden.", bcolors.ENDC)    
         print("\n")
         break
     else:
@@ -93,7 +97,8 @@ while True:
 |         | /
 +---------+/
 ''')
-        time.sleep(1)
+        print(bcolors.OKCYAN, "Haha, hier zit de kat niet!", bcolors.ENDC)
+        time.sleep(2)
 
     # Verplaats de kat
     if kat_positie == 1:
