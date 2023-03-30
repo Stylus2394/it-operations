@@ -1,4 +1,9 @@
 import random
+import os
+import time
+
+clear = lambda: os.system('cls') #on Windows System
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -11,38 +16,85 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-
-toegestane_doosnummers = list(range(1,6))
+aantal_dozen = 50
+toegestane_doosnummers = list(range(1,aantal_dozen+1))
 aantal_pogingen = 0
+cheatmode = True
+
+
 
 # Plaats de kat in een willekeurige doos
-kat_positie = random.randint(1, 5)
+kat_positie = random.randint(1, aantal_dozen+1)
 
 # Spelbord
 dozen = ["[]", "[]", "[]", "[]", "[]"]
 
+
 # Game loop
 while True:
-    print(bcolors.HEADER, "De kat zit in doos", kat_positie, bcolors.ENDC)
+    clear()
+    print('''
+  __________
+ /         /|
++---------+ |
+|         | |
+|         | /
++---------+/
+''')
+
+    if cheatmode == True:
+        print(bcolors.HEADER, "Cheat mode: De kat zit in doos", kat_positie, bcolors.ENDC)
 
     #Vraag gebruiker om een doosnummer
-    doos_nummer = int(input("Kies een doosnummer (1 t/m 5): "))
+    doos_nummer = int(input("Kies een doosnummer van 1 t/m " + str(aantal_dozen) + ":"  ))
+    clear() 
 
-    
+    if doos_nummer == 0:
+        print("Doei")
+        break  
     if doos_nummer not in toegestane_doosnummers:
-        #doos_nummer = int(input("2. Kies een doosnummer (1 t/m 5): "))
-        print(bcolors.FAIL, "Vul een nummer in tussen 1-5", bcolors.ENDC)
-        continue       
-
+        print(bcolors.FAIL, "Vul een nummer in tussen 1-",aantal_dozen, bcolors.ENDC)
+        continue
+         
     aantal_pogingen += 1
 
     print(bcolors.OKBLUE, "Aantal pogingen:", aantal_pogingen, bcolors.ENDC)
 
     # Kijk of de kat in de gekozen doos zit
     if doos_nummer == kat_positie:
+        clear()
         print(bcolors.OKGREEN, "Gefeliciteerd! Je hebt de kat gevonden.", bcolors.ENDC)
-        print(bcolors.OKCYAN, "Je had", aantal_pogingen , " pogingen nodig om de kat te vinden.", bcolors.ENDC)    
-    
+        print(bcolors.OKCYAN, "Je had",aantal_pogingen , "pogingen nodig om de kat te vinden.", bcolors.ENDC)    
+        print('''
+   _________
+  | |\_._/| |
+  | | o o | |
+  | (  T  ) |
+  |.^`-^-'^.|
+ /         /|
++---------+ |
+|         | |
+|         | /
++---------+/
+''')
+        print("\n")
+        break
+    else:
+        clear()
+        print('''
+   _________
+  |         |
+  |         |
+  |         |
+  |_________|
+ /         /|
++---------+ |
+|         | |
+|         | /
++---------+/
+''')
+        time.sleep(1)
+
     # Verplaats de kat
     if kat_positie == 1:
         kat_positie += 1
@@ -52,6 +104,5 @@ while True:
         kat_positie += random.choice([-1, 1])
 
     # Update het spelbord
-    dozen = ["[]" if i != kat_positie - 1 else "[Kat]" for i in range(5)]
+    dozen = ["[]" if i != kat_positie - 1 else "[Kat]" for i in range(aantal_dozen)]
     print("  ".join(dozen))
-
